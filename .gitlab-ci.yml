@@ -1,0 +1,16 @@
+test:
+  tags:
+    - php8.1
+    - composer
+    - npm
+    - node.js
+  script:
+    - composer install --no-interaction
+    - npm install
+    - npm run build
+    - composer test
+  artifacts:
+    paths:
+      - tests/_output
+    exclude:
+      - tests/_output/.gitignore

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider adresse email{% endblock %}
+
+{% block body %}
+
+    <h1>Valider adresse email</h1>
+    <p>Si vous n'avez pas reçu le mail, veuiller cliquer sur le bouton ci-dessous pour envoyer un nouveau mail:</p>
+
+    {{ form_start(form) }}
+        {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+{% endblock %}

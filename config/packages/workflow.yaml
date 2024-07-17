@@ -1,0 +1,25 @@
+framework:
+    workflows:
+        advertisement_publishing:
+            type: 'workflow'
+            supports:
+                - App\Entity\Advertisement
+            initial_marking: !php/const App\Entity\Advertisement::STATE_DRAFT
+            places:
+                - !php/const App\Entity\Advertisement::STATE_DRAFT
+                - !php/const App\Entity\Advertisement::STATE_PUBLISHED
+                - !php/const App\Entity\Advertisement::STATE_CLOSED
+                - !php/const App\Entity\Advertisement::STATE_ARCHIVED
+            transitions:
+                publish:
+                    from: !php/const App\Entity\Advertisement::STATE_DRAFT
+                    to: !php/const App\Entity\Advertisement::STATE_PUBLISHED
+                close:
+                    from: !php/const App\Entity\Advertisement::STATE_PUBLISHED
+                    to: !php/const App\Entity\Advertisement::STATE_CLOSED
+                archive:
+                    from: !php/const App\Entity\Advertisement::STATE_PUBLISHED
+                    to: !php/const App\Entity\Advertisement::STATE_ARCHIVED
+                republish:
+                    from: !php/const App\Entity\Advertisement::STATE_ARCHIVED
+                    to: !php/const App\Entity\Advertisement::STATE_PUBLISHED

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ app.request.get('search') is same as(null) ? 'advertisement index' : 'search: ' ~  app.request.get('search') }}
+{% endblock %}
+
+{% block body %}
+    <h1>
+        {{ app.request.get('search') is same as(null) ? 'advertisement index' : 'search: ' ~  app.request.get('search') }}
+    </h1>
+
+    {{ include('/advertisement/_list.html.twig', {'pagination': pagination}) }}
+
+{% endblock %}

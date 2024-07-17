@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Mes brouillon
+{% endblock %}
+
+{% block body %}
+    <h1>Mes annonces brouillons</h1>
+
+    {{ include('/advertisement/_list.html.twig', {'pagination': pagination}) }}
+
+{% endblock %}

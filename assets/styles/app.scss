@@ -1,0 +1,41 @@
+$light: #d5d8e7;
+$white: #ffffff;
+$dark: #141427;
+$primary: #412f92;
+$secondary: #6961c0;
+$info: #8b8ad2;
+$accent1: #223f8d;
+$accent2: #775ea2;
+$accent3: #a7adc2;
+$success: #24a163;
+$warning: #dfcb24;
+$danger: #ec2712;
+
+$theme-colors: (
+    "light": $light,
+    "white": $white,
+    "dark": $dark,
+    "primary": $primary,
+    "secondary": $secondary,
+    "info": $info,
+    "success": $success,
+    "warning": $warning,
+    "danger": $danger,
+) !default;
+
+$custom_colors: (
+    "accent1": $accent1
+);
+
+$theme-colors: map-merge($theme-colors, $custom_colors);
+
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons";
+
+.bi {
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+  fill: currentcolor;
+}

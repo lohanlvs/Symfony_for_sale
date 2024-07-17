@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <h1>Category index:</h1>
+
+    <ul class="list-group">
+    {% for cat in category_list %}
+        {% set is_even = loop.index is even %}
+        <li class="list-group-item bg-light{{ is_even ? '' : '-subtle' }}"><a class="" href="{{ path("app_category_show", {id: cat.id}) }}">{{ cat.name }}</a></li>
+        
+    {% endfor %}
+    </ul>
+
+{% endblock %}

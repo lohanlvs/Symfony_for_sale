@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <h1>Category "{{ cat.name }}" index:</h1>
+
+    <ul class="list-group">
+    {% for adv in advertisement_list %}
+        {% set is_even = loop.index is even %}
+        <li class="list-group-item text-primary bg-light{{ is_even ? '' : '-subtle' }}">{{ adv.title }}</li>
+    {% endfor %}
+    </ul>
+
+    {{ knp_pagination_render(advertisement_list) }}
+{% endblock %}

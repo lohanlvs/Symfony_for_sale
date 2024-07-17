@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}advertisement{% endblock %}
+
+{% block body %}
+    <h1 id="title_adv_show">{{ adv.title }}</h1>
+
+    <p id="date_adv_show">Date de création: {{ adv.createdAt|date("d/m/y H-i-s") }}</p>
+    <span id="owner_adv" class="badge bg-accent1 align-self-center">
+        Auteur de l'annonce: <a href="{{ path('app_user_adv', {'id': adv.owner.id}) }}">{{adv.owner.firstname}} {{adv.owner.lastname}}</a>
+    </span>
+
+    {% if adv.getUpdatedAt() is not same as(null) %}
+        <p id="dateModif_adv_show">Date de dernière modification: {{ adv.getUpdatedAt()|date("d/m/Y H-i-s") }}</p>
+    {% endif %}
+
+    <p id="desc_adv_show">Description: {{ adv.description }}</p>
+    <p id="cat_adv_show">Catégorie: {{ adv.category.name }}</p>
+    <p id="price_adv_show">Price: {{ adv.price }}€</p>
+    <p id="location_adv_show">Location: {{ adv.location }}</p>
+
+    {% if is_granted('USER_VIEW', adv) %}
+        <a href="{{ path('app_advertisement_edit', {id: adv.id}) }}"><button type="button" id="button_edit">edit</button></a>
+        {% if adv.getCurrentState() == 'draft' %}
+            {{ include('/advertisement/_delete.html.twig', {'adv': adv}) }}
+        {% endif %}
+    {% endif %}
+
+{#
+    {% if is_granted('USER_WORKFLOW_PUBLISH', adv) %}
+        {{ include('/advertisement/_workflow.html.twig', {'adv': adv, 'workflow_action': 'publish'}) }}
+    {% endif %}
+    {% if is_granted('USER_WORKFLOW_CLOSE', adv) %}
+        {{ include('/advertisement/_workflow.html.twig', {'adv': adv, 'workflow_action': 'close'}) }}
+    {% endif %}
+    {% if is_granted('USER_WORKFLOW_ARCHIVE', adv) %}
+        {{ include('/advertisement/_workflow.html.twig', {'adv': adv, 'workflow_action': 'archive'}) }}
+    {% endif %}
+    {% if is_granted('USER_WORKFLOW_REPUBLISH', adv) %}
+        {{ include('/advertisement/_workflow.html.twig', {'adv': adv, 'workflow_action': 'republish'}) }}
+    {% endif %}
+#}
+
+    {{ component('AdvertisementLikes', { advertisement: adv, user: app.user }) }}
+
+{% endblock %}

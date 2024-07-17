@@ -1,0 +1,7 @@
+<form method="post"
+      action="{{ path('app_advertisement_workflow_' ~ workflow_action, {id: adv.id}) }}"
+      onsubmit="return confirm('Voulez vous vraiment {{ workflow_action }} cet annonce ?')">
+
+    <button type="submit" id="button_{{ workflow_action }}">{{ workflow_action }}</button>
+
+</form>

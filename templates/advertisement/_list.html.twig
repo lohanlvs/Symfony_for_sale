@@ -1,0 +1,25 @@
+<ul class="list-group d-flex flex-lg-fill" id="liste_adv">
+{% for adv in pagination %}
+    {% set is_even = loop.index is even %}
+
+    <li id="item_adv" class="list-group-item d-flex justify-content-start bg-light{{ is_even ? '' : '-subtle' }}">
+        <div class="p-2 d-flex flex-column">
+            <a id="category_adv" class="badge bg-primary nav-link fs-3" style="margin-bottom: 5px" href="{{ path("app_category_show", {id: adv.category.id}) }}">
+                {{ adv.category.name }}
+            </a>
+            <span id="date_adv" class="badge bg-info d-flex fs-3">{{ adv.createdAt|date("d/m/y") }}</span>
+        </div>
+
+        <div id="title_adv" class="ml-auto p-2 d-flex align-self-end align-self-center">
+            <a href="{{ path("app_advertisement_show", {id: adv.id}) }}">{{ adv.title }} </a>
+        </div>
+
+        <span id="price_adv" class="badge bg-danger align-self-center">{{ adv.price }} €</span>
+
+        {{ component('AdvertisementLikes', { advertisement: adv, user: app.user }) }}
+    </li>
+{% endfor %}
+
+</ul>
+
+{{ knp_pagination_render(pagination) }}

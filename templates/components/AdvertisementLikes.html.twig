@@ -1,0 +1,20 @@
+<div {{ attributes }} class="badge bg-accent1 align-self-center">
+    {% if app.user and is_granted('USER_LIKE', advertisement) %}
+        {% if this.isLikedByUser(app.user) %}
+            <button
+                    data-action="live#action"
+                    data-action-name="toggleLike"
+                ><i class="bi bi-suit-heart-fill"></i>
+            </button>
+        {% else %}
+            <button
+                    data-action="live#action"
+                    data-action-name="toggleLike"
+                ><i class="bi bi-heart"></i>
+            </button>
+        {% endif %}
+    {% else %}
+        <i class="bi bi-heart"></i>
+    {% endif %}
+    {{ this.getLikesCount() }}
+</div>

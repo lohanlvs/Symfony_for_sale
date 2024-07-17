@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ app.user is not same as(null) and app.user.id == user.id ?
+        'Mes annonces' : 'Annonces de ' ~ user.firstname ~ ' ' ~ user.lastname}}
+{% endblock %}
+
+{% block body %}
+    <h1>
+        {{ app.user is not same as(null) and app.user.id == user.id ?
+            'Mes annonces publiées' : 'Annonces de ' ~ user.firstname ~ ' ' ~ user.lastname}}
+    </h1>
+
+    <a href="{{ path('app_user_draft') }}"><button type="button" class="btn btn-primary">Voir mes brouillons</button></a>
+
+    {{ include('/advertisement/_list.html.twig', {'pagination': pagination}) }}
+
+{% endblock %}

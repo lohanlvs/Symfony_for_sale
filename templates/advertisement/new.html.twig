@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}advertisement{% endblock %}
+
+{% block body %}
+    <h1>New Advertisement :</h1>
+    {{ include('/advertisement/_form.html.twig', {'form' : form, 'input_submit' : 'Create'}, with_context = false) }}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+when@dev: &dev
+    framework:
+        mailer:
+            dsn: '%env(MAILER_DSN)%'
+            envelope:
+                sender: '%env(MAILER_SENDER_EMAIL)%'
+            headers:
+                From: '%env(MAILER_SENDER_EMAIL)% <%env(MAILER_SENDER_EMAIL)%>'
+
+when@test: *dev

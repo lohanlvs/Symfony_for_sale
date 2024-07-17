@@ -1,0 +1,50 @@
+grumphp:
+    fixer:
+        enabled: false
+        fix_by_default: false
+    tasks:
+        composer: ~
+        composer_script:
+            script: "test:yaml"
+            triggered_by: [ php, phtml ]
+            working_directory: ~
+        composer_script_bis:
+            script: "test:twig"
+            triggered_by: [ php, phtml ]
+            working_directory: ~
+            metadata:
+                task: composer_script
+        git_blacklist:
+            keywords:
+                - "dump("
+                - "var_dump("
+                - "print_r("
+                - "die("
+                - "exit("
+                - "exit;"
+        git_commit_message:
+            enforce_capitalized_subject: false
+            type_scope_conventions:
+                types:
+                    - build
+                    - ci
+                    - chore
+                    - docs
+                    - feat
+                    - fix
+                    - perf
+                    - refactor
+                    - revert
+                    - style
+                    - test
+                scopes: []
+        phpcsfixer:
+            allow_risky: ~
+            cache_file: ~
+            config: '.php-cs-fixer.dist.php'
+            rules: [ ]
+            using_cache: ~
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: [ 'php' ]
